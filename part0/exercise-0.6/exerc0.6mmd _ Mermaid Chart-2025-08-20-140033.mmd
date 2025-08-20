@@ -1,0 +1,13 @@
+sequenceDiagram
+    participant browser
+    participant server
+
+    activate browser
+    Note right of browser: The browser creates a note object, adds it to the list, input field is cleared, and calls redraw to render it.
+    deactivate browser
+    browser ->> server: POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+    activate server
+    Note right of browser: the new note along with the timestamp of the user is sent to the server as a payload obj
+        server -->> browser: 201 response
+    deactivate server
+    Note left of server: The server returns JSON message: "note created" to confirm success.
